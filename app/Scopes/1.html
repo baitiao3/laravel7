@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title></title>
+    <link rel="stylesheet" href="__PUBLIC__/Admin/css/pintuer.css">
+    <link rel="stylesheet" href="__PUBLIC__/Admin/css/admin.css">
+    <script src="__PUBLIC__/Admin/js/jquery.js"></script>
+    <script src="__PUBLIC__/Admin/js/pintuer.js"></script>
+</head>
+<style type="text/css">
+    .field{margin-top: 7px;margin-left: 10px;}
+    .img{width:200px;height:200px;}
+
+</style>
+<body>
+<div class="panel admin-panel">
+    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>查看内容</strong></div>
+    <div class="body-content">
+        <form method="post" class="form-x"  enctype="multipart/form-data">
+            <input type="hidden" name="id" value="{$res['id']}" />
+            <div class="form-group">
+                <div class="label">
+                    <label>姓名：</label>
+                </div>
+                <div class="field">
+                    {$res['name']}
+                    <div class="tips"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label">
+                    <label>身份证号：</label>
+                </div>
+                <div class="field">
+                    {$res['id_card']}
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>厂牌工号：</label>
+                </div>
+                <div class="field">
+                    {$res['job_card']}
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>入职时间：</label>
+                </div>
+                <div class="field">
+                    {$res['job_time']}
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>厂区名称：</label>
+                </div>
+                <div class="field">
+                    {$res['posi_name']}
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <!--<div class="form-group">-->
+                <!--<div class="label">-->
+                    <!--<label>所属部门：</label>-->
+                <!--</div>-->
+                <!--<div class="field">-->
+                    <!--{$res['group']}-->
+                    <!--<div class="tips"></div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div class="form-group">
+                <div class="label">
+                    <label>紧急联系人：</label>
+                </div>
+                <div class="field">
+                    {$res['ur_name']}
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>紧急联系电话：</label>
+                </div>
+                <div class="field">
+                    {$res['name']}
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>薪资待遇</label>
+                </div>
+                <div class="field">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>白班工价：</label>
+                </div>
+                <div class="field">
+                    {$res['job_hour']}
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <!--<div class="form-group">-->
+                <!--<div class="label">-->
+                    <!--<label>白班工价：</label>-->
+                <!--</div>-->
+                <!--<div class="field">-->
+                    <!--{$res['job_hour_b']}-->
+                    <!--<div class="tips"></div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<div class="label">-->
+                    <!--<label>夜班工价：</label>-->
+                <!--</div>-->
+                <!--<div class="field">-->
+                    <!--{$res['job_hour_y']}-->
+                    <!--<div class="tips"></div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div class="form-group">
+                <div class="label">
+                    <label>入职奖金：</label>
+                </div>
+                <div class="field">
+                    {$res['money']}
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>工作周期：</label>
+                </div>
+                <div class="field">
+                    {$res['job_alltime']}
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>薪资模式：</label>
+                </div>
+                <div class="field">
+                    {$res['send']}
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>报销</label>
+                </div>
+                <div class="field">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>住宿费：</label>
+                </div>
+                <div class="field">
+                    {$res['home']}
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>车费：</label>
+                </div>
+                <div class="field">
+                    {$res['car']}
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>油费：</label>
+                </div>
+                <div class="field">
+                    {$res['youfei']}
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>过路费：</label>
+                </div>
+                <div class="field">
+                    {$res['more']}
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>相关凭证：</label>
+                </div>
+                <div class="field">
+                    <div style="display:flex;">
+                        <volist name="res.pic" id="v">
+                            <div class="img">
+                                <a href="{$v}" target="_blank">
+                                    <img src="{$v}" style="width:200px;height:200px;"/>
+                                </a>
+                            </div>
+                        </volist>
+
+                    </div>
+
+                    <div class="tips"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label">
+                    <label></label>
+                </div>
+                <div class="field">
+                    <button class="button bg-main icon-check-square-o" onclick="history.back(-1)"> 返回</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+<script>
+
+</script>
+</html>
