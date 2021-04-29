@@ -13,164 +13,87 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::get('/user', 'UserController@index');
+Route::post('/user', 'UserController@post');
+Route::put('/user', 'UserController@put');
+Route::patch('/user', 'UserController@patch');
+Route::delete('/user', 'UserController@delete');
+Route::options('/user', 'UserController@options');
 
-//Route::get("index", function () {
-//    return "Holle,Laravel!";
-//});
+Route::match(['get', 'post'], '/holle', function () {
+    return 'hello';
+});
+Route::any('/any', function () {
+   return 'any';
+});
+//Route::view('/welcome', 'welcome');
+Route::view('/welcome', 'welcome', ['name' => 'cdw']);
 
-//Route::any("index",function () {
-//    return "Holle,Laravel!";
-//});
+Route::get('/user/{id}', function ($id){
+   return 'user' . $id;
+})->where('id', '[a-z0-9]+');
 
-//Route::match(["get","post"],"index/{name}",function ($name) {
-//    return "Holle,Laravel!".$name;
-//});
-
-//Route::get("index/{id}",function ($id) {
-//   return "id:".$id;
-//});
-
-//Route::get("index/{id}","TaskController@index")->where("id",".*");
-
-//Route::get("index/{id}","TaskController@index")->where("id","[0-9]+");
-
-//Route::get("index/{name}","TaskController@index")->where("name","[a-z]+");
-
-//Route::redirect("index","task");
-
-//Route::redirect("index","task",301);
-
-//Route::permanentRedirect("index","task");
-//
-//Route::get("task",function () {
-//    return "Holle,Laravel!";
-//});
-
-//Route::view("task","task",['id'=>10]);
-
-//Route::get("task",function(){
-//    return view("task",['id'=>"asd"]);
-//});
-
-//Route::get("/",function() {
-//    return "Holle,Laravel!";
-//});
-
-//Route::fallback(function (){
-//    return redirect("/");
-//});
-
-//Route::fallback(function(){
-//    return "Holle,Laravel!";
-//});
-
-//Route::fallback(function(){
-//    return "这里是一个404";
-//});
-//
-//Route::fallback(function(){
-//    return view("404");
-//});
-//
-////Route::fallback(function(){
-////    return "这里是一个404";
-////});
-//
-//Route::get("task/{text}","TaskController@index");
-//
-//Route::get("one","OneController");
-//
-//Route::get("index",function (){
-//    dump(Route::current());
-//    return Route::currentRouteAction();
-//})->name('localhost.index');
-
-//Route::get("index",function (){
-////    return [1,2,3];
-////    return response([1,2,3]);
-////    return response()->json([1,2,3,4,5]);
-////    $data = array([
-////        "name"=>"baitiao"
-////    ]);
-////    return response()->json($data);
-////    return response($data,201);
-//    //文本解析模式
-////    return response("<b>baitiao</b>")->header("'Content-Type","text/plain");
-//    return response()->view("task",['name'=>"baitiao"],201)->header("Content-Type","text/plain");
-//
-//});
-
-//Route::get("index",function(){
-////    return redirect()->to("task");
-////   return redirect("task");
-////    return redirect("task/url");
-////    return Redirect::to("task");
-//});
-
-//Route::get("index",function(){
-////    return redirect()->to("task");
-////    return redirect()->route("task.index");
-////    return redirect()->route("task.login");
-////    return redirect()->action("TackController@index");
-////    return redirect()->action("TaskController@login");
-////    return redirect("baidu");
-//    return redirect()->to("baidu");
-//
-//});
-//
-//Route::get("task","TaskController@index");
-//
-//Route::get("task","TaskController@login");
-//
-//Route::get("task/{name}",function($name){
-//    return "这里是task/{name};".$name;
-//});
-//
-//Route::get("task/url",function(){
-//    return "这里是task/url";
-//});
-//
-//Route::get("baidu",function(){
-//    return redirect()->away("http://www.baidu.com");
-//});
-
-//Route::resource("blogs","BlogController");
-
-//Route::resource("blogs","BlogController")->only(['index','show']);
-//
-//Route::resource("task","TaskController")->only(['show','index']);
-//
-//Route::get("task/index/{name}","TaskController@index");
-
-//Route::resource("blogs.comments","CommentController")->shallow();
-
-//Route::resource("blogs.comments","CommentController")->name("index","b.c.i");
-
-//Route::resource("blogs.comments","CommentController")->parameter("blogs","id");
-
-Route::get("index/index",function(){
-    return view("index",['id'=>"asd"]);
+Route::get('/post/{post}/comments/{comments}', function ($postId, $commentId){
+    return 'postId' . $postId . ',commentId' . $commentId;
 });
 
-Route::get("task/form","TaskController@form");
+Route::get('/user/name/{name}', function ($name) {
+    return $name;
+})->where('name', '[A-Za-z1-9]+');
 
-Route::any("task/add",function() {
-   return \Illuminate\Support\Facades\Request::method();
+Route::get('/phone/{phone}', function ($phone) {
+    return $phone;
 });
 
-Route::get("data/select","DataCOntroller@select");
+Route::get('search/{search}', function($search) {
+    return $search;
+})->where('search', '.*');
 
-Route::get("data/product_all","DataCOntroller@product_all");
+//Route::get('name/profile', function () {
+//   return 1;
+//})->name('profile');
+Route::get('route/{name}/send', 'UserController@send')->name('send');
 
-Route::get("data/get_user_all","DataController@get_user_all");
 
-Route::get("data/update","DataController@update");
+Route::get('route/profile', 'UserController@profile')->name('profile');
 
-Route::get("data/add","DataController@add");
+Route::middleware(['first', 'second'])->group(function () {
+    Route::get('/', function() {
+       echo "first";
+    });
+    Route::get('first/second', function() {
+       echo 'profile';
+    });
+});
 
-Route::get("data/del","DataController@del");
+Route::namespace('Admin')->group(function(){
+    Route::get('Admin/index', 'IndexController@index')->name('admin.index');
+});
 
-Route::get("data/get_where","DataController@get_where");
+Route::get('Admin/index', 'IndexController@index');
+
+Route::prefix('cdw')->group(function(){
+   Route::get('index', 'User\IndexController@index');
+   Route::get('goods', function(){
+       echo 'goods';
+   });
+});
+
+Route::name('admin.')->group(function () {
+   Route::get('users', 'UserController@users')->name('users');
+});
+
+Route::get('api/users/{user}', function (App\User $uesr){
+    return $uesr->email;
+});
+
+Route::middleware('auth:api', 'throttle:60,1')->group(function(){
+    Route::get('/throttle', function(){
+        echo 1;
+    });
+});
+
+Route::get('home', function(){
+   echo 'home';
+});
+

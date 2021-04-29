@@ -7,7 +7,7 @@ use Closure;
 use Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode as Middleware;
 use Illuminate\Support\Facades\Request;
 
-class CheckForMaintenanceMode extends Middleware
+class First extends Middleware
 {
     public function handle($request, Closure $next)
     {

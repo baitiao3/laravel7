@@ -14,6 +14,7 @@ class Check
     //固定格式，固定方法，固定参数
     public function handle($request, Closure $next, $param)
     {
+
         //拦截代码写这里
         if ($request->get('id') != 1) {
             //echo $param;

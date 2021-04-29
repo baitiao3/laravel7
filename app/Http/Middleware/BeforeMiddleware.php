@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class Every
+class BeforeMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,9 +15,11 @@ class Every
      */
     public function handle($request, Closure $next)
     {
+        $response = $next($request);
 
+        //执行任务
 
-        //echo '全局中间件<br>';
-        return $next($request);
+        echo '<br/>before';
+        return $response;
     }
 }

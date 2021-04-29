@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class Every
+class CheckAge
 {
     /**
      * Handle an incoming request.
@@ -15,9 +15,10 @@ class Every
      */
     public function handle($request, Closure $next)
     {
-
-
-        //echo '全局中间件<br>';
+        if ($request->age <= 20)
+        {
+            return redirect('home', 301);
+        }
         return $next($request);
     }
 }
